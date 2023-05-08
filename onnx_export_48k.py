@@ -1,5 +1,6 @@
 import argparse
 import time
+import sys
 import numpy as np
 import onnx
 from onnxsim import simplify
@@ -10,10 +11,7 @@ from model_onnx_48k import SynthesizerTrn
 import utils
 from hubert import hubert_model_onnx
 
-def main(HubertExport,NetExport):
-
-    path = "NyaruTaffy"
-
+def main(HubertExport,NetExport,path):
     if(HubertExport):
         device = torch.device("cuda")
         hubert_soft = hubert_model_onnx.hubert_soft("hubert/model.pt")
@@ -70,4 +68,4 @@ def main(HubertExport,NetExport):
 
 
 if __name__ == '__main__':
-    main(False,True)
+    main(False,True,sys.argv[1])
